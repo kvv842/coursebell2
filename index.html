@@ -4,26 +4,34 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/styles.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
 </head>
 <body>
-<form>
-    <input type="radio" name="vehicleType" value="Truck"/><label>Грузовая</label><br/>
-    <input type="radio" name="vehicleType" value="Truck"/><label>Легковая</label><br/>
+<form name="vehicleForm">
+    <input type="radio" name="vehicleType" value="Truck" checked="true"/><label>Грузовая</label><br/>
+    <input type="radio" name="vehicleType" value="Car"/><label>Легковая</label><br/>
     <label>Название</label><input type="text" name="vehicleName" value=""/><br/>
     <label>Масса/Скорость</label><input type="number" name="vehicleWeight" value=""/><br/>
     <label>Примечание</label><input type="text" name="vehicleDescription" value=""/><br/>
     <input type="button" name="vehicleAdd" value="Добавить"/><br/>
 </form>
-<select size="3" multiple name="hero[]" class="vehicleList">
-    <option value="Чебурашка">Чебурашка</option>
-    <option value="Крокодил Гена">Крокодил Гена</option>
-    <option value="Шапокляк">Шапокляк</option>
-    <option value="Крыса Лариса">Крыса Лариса</option>
+
+<select size="3" name="hero[]" id="vehicleList">
+
 </select>
+<script type="text/template" id="vehicleListOption">
+    <option value="<%-getName()%>"><%-getName()%>: <%-getSpecificValue()%> <%-vehicleSpecificUnit%> </option>
+</script>
+
 <div id="vehicleDetails">
 
 </div>
+<script type="text/template" id="vehicleDetailsTemplate">
+    Тип: <%-vehicleType%> <br />
+    Модель: <%-getName()%> <br />
+    <%-vehicleSpecificName%> <%-getSpecificValue()%> <%-vehicleSpecificUnit%> <br />
+    Примечание: <%-getDescription()%> <br />
+</script>
 
 <script src="js/mainscript.js"></script>
 </body>
